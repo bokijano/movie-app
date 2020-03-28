@@ -313,6 +313,12 @@
   font-weight: bolder;
 }
 
+@media screen and (max-width: 475px) {
+  .container .form-group #search-btn {
+    font-size: 0.75rem;
+  }
+}
+
 #search-movie {
   margin-top: 20px;
 }
@@ -384,11 +390,25 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .modal .content .close {
+  width: 100%;
   color: #aaaaaa;
-  float: right;
+  padding-left: 95%;
+  top: 5px;
+  right: 5px;
   font-size: 28px;
   font-weight: bold;
 }
@@ -397,5 +417,59 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .modal .content .close {
+    padding-left: 90%;
+    padding-top: 5px;
+  }
+}
+
+.modal .content img {
+  width: 20%;
+}
+
+.modal .content .details {
+  width: 60%;
+  padding: 20px;
+}
+
+.modal .content .details h1 {
+  font-family: "Luckiest Guy", cursive;
+}
+
+.modal .content .details p {
+  text-align: justify;
+  font-family: "Carter One", cursive;
+}
+
+@media screen and (max-width: 768px) {
+  .modal .content {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 2px;
+  }
+  .modal .content img {
+    width: 50%;
+    margin-top: 10px;
+  }
+  .modal .content .details {
+    width: 100%;
+  }
+}
+
+.modal .video-style {
+  width: 80%;
+  height: 50%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal .video-style {
+    height: 400px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

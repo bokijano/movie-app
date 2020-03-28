@@ -187,6 +187,9 @@
         padding: 7px;
         font-weight: bolder;
       }
+      @media screen and (max-width: 475px) {
+        font-size: 0.75rem;
+      }
     }
   }
 }

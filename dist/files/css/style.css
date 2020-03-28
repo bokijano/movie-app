@@ -370,6 +370,12 @@
   }
 }
 
+#search-movie h2 {
+  text-transform: capitalize;
+  text-align: center;
+  font-family: "Luckiest Guy", cursive;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -444,6 +450,35 @@
   font-family: "Carter One", cursive;
 }
 
+.modal .content .actor-style {
+  width: 30%;
+  padding: 10px 5px;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .content .actor-style img {
+  border-radius: 10px;
+}
+
+.modal .content .actor-style h2 {
+  text-align: center;
+  font-size: 0.75rem;
+  font-family: "Luckiest Guy", cursive;
+}
+
 @media screen and (max-width: 768px) {
   .modal .content {
     -ms-flex-wrap: wrap;
@@ -461,15 +496,9 @@
 
 .modal .video-style {
   width: 80%;
-  height: 50%;
+  height: 350px;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .modal .video-style {
-    height: 400px;
-  }
 }
 /*# sourceMappingURL=style.css.map */

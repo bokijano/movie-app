@@ -8,8 +8,9 @@ const imgURL = "https://image.tmdb.org/t/p/w500";
 const searchButton = document.querySelector("#search-btn");
 const inputValue = document.querySelector("#input-value");
 const searchMovie = document.querySelector("#search-movie");
+
+// display and close modal with details
 const modalDisplay = document.querySelector(".modal");
-const closeModal = document.querySelector(".close");
 
 // generate url
 function generateUrl(path) {
@@ -44,6 +45,63 @@ function createMovieDatabase(movies) {
   return movieElement;
 }
 
+// create video trailer from youtube
+function createTrailer(movie) {
+  const videoElement = document.createElement("iframe");
+  videoElement.setAttribute("class", "video-style");
+  videoElement.src = `https://www.youtube.com/embed/${movie}`;
+  //videoElement.allowFullscreen = true;
+  if (movie) {
+    return videoElement;
+  }
+}
+
+// create details for modal
+function createDetails(movie) {
+  const detailsDisplay = document.createElement("div");
+  detailsDisplay.setAttribute("class", "details");
+
+  const titleDisp = document.createElement("h1");
+  titleDisp.classList = "title";
+  titleDisp.innerHTML = movie.title;
+
+  const overviewDisp = document.createElement("p");
+  overviewDisp.classList = "title";
+  overviewDisp.innerHTML = movie.overview;
+
+  detailsDisplay.appendChild(titleDisp);
+  detailsDisplay.appendChild(overviewDisp);
+
+  return detailsDisplay;
+}
+
+// create content section(modal) for scecific movie
+function createSpecificData(movie) {
+  const contentDisplay = document.createElement("div");
+  contentDisplay.setAttribute("class", "content");
+
+  const img = document.createElement("img");
+  img.src = imgURL + movie.poster_path;
+  img.setAttribute("data-movie-id", movie.id);
+
+  const displayMovie = createDetails(movie);
+
+  const closeModal = document.createElement("span");
+  closeModal.classList = "close";
+  closeModal.innerHTML = "&times";
+
+  closeModal.onclick = function() {
+    modalDisplay.style.display = "none";
+    modalDisplay.innerHTML = "";
+  };
+
+  contentDisplay.appendChild(closeModal);
+  contentDisplay.appendChild(img);
+  contentDisplay.appendChild(displayMovie);
+
+  return contentDisplay;
+}
+
 // search button onclick event
 searchButton.onclick = function(event) {
   event.preventDefault();
@@ -57,7 +115,6 @@ searchButton.onclick = function(event) {
       const movies = data.results;
       const movieBlock = createMovieDatabase(movies);
       searchMovie.appendChild(movieBlock);
-      console.log("Data: ", data);
     })
     .catch(error => {
       console.log("Error: ", error);
@@ -72,37 +129,36 @@ document.onclick = event => {
   if (target.tagName.toLowerCase() === "img") {
     modalDisplay.style.display = "block";
     const movieID = target.dataset.movieId;
-    console.log(movieID);
 
     // fetch movie details
     const path1 = `movie/${movieID}`;
     const url1 = generateUrl(path1);
-    console.log(url1);
     fetch(url1)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        const movieDetails = createSpecificData(data);
+        modalDisplay.appendChild(movieDetails);
       })
       .catch(error => {
         console.log("Error: ", error);
       });
 
     // fetch movie videos
-    const path2 = `movie/${movieID}/videos`;
-    const url2 = generateUrl(path2);
-    console.log(url2);
-    fetch(url2)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.log("Error: ", error);
-      });
-  }
-};
+    const path3 = `movie/${movieID}/videos`;
+    const url3 = generateUrl(path3);
+    setTimeout(
+      fetch(url3)
+        .then(res => res.json())
+        .then(data => {
+          const movieTrailer = data.results[0].key;
+          const videoDisplay = createTrailer(movieTrailer);
 
-// close modal onclick event
-closeModal.onclick = function() {
-  modalDisplay.style.display = "none";
+          modalDisplay.appendChild(videoDisplay);
+        })
+        .catch(error => {
+          console.log("Error: ", error);
+        }),
+      1000
+    );
+  }
 };

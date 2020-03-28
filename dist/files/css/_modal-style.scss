@@ -18,9 +18,16 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     .close {
+      width: 100%;
       color: #aaaaaa;
-      float: right;
+      padding-left: 95%;
+      top: 5px;
+      right: 5px;
       font-size: 28px;
       font-weight: bold;
       &:hover,
@@ -29,6 +36,42 @@
         text-decoration: none;
         cursor: pointer;
       }
+      @media screen and (max-width: 768px) {
+        padding-left: 90%;
+        padding-top: 5px;
+      }
     }
+    img {
+      width: 20%;
+    }
+    .details {
+      width: 60%;
+      padding: 20px;
+      h1 {
+        font-family: "Luckiest Guy", cursive;
+      }
+      p {
+        text-align: justify;
+        font-family: "Carter One", cursive;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      padding: 2px;
+      img {
+        width: 50%;
+        margin-top: 10px;
+      }
+      .details {
+        width: 100%;
+      }
+    }
+  }
+  .video-style {
+    width: 80%;
+    height: 50%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20px;
   }
 }

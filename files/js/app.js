@@ -42,6 +42,7 @@ function createMovieDatabase(movies) {
   const section = movieSection(movies);
 
   movieElement.appendChild(section);
+
   return movieElement;
 }
 
@@ -50,10 +51,29 @@ function createTrailer(movie) {
   const videoElement = document.createElement("iframe");
   videoElement.setAttribute("class", "video-style");
   videoElement.src = `https://www.youtube.com/embed/${movie}`;
-  //videoElement.allowFullscreen = true;
+  videoElement.allowFullscreen = true;
   if (movie) {
     return videoElement;
   }
+}
+
+// create movie main actor
+function mainActor(movie) {
+  const mainActor = document.createElement("div");
+  mainActor.setAttribute("class", "actor-style");
+
+  const img = document.createElement("img");
+  img.src = imgURL + movie.profile_path;
+  img.setAttribute("data-movie-id", movie.id);
+
+  const actorDetails = document.createElement("h2");
+  actorDetails.setAttribute("class", "actor-details");
+  actorDetails.innerHTML = `${movie.name} as ${movie.character}`;
+
+  mainActor.appendChild(img);
+  mainActor.appendChild(actorDetails);
+
+  return mainActor;
 }
 
 // create details for modal
@@ -104,7 +124,6 @@ function createSpecificData(movie) {
 
 // search button onclick event
 searchButton.onclick = function(event) {
-  event.preventDefault();
   const value = inputValue.value;
 
   const newURL = url + "&query=" + value;
@@ -112,14 +131,24 @@ searchButton.onclick = function(event) {
   fetch(newURL)
     .then(res => res.json())
     .then(data => {
-      const movies = data.results;
-      const movieBlock = createMovieDatabase(movies);
-      searchMovie.appendChild(movieBlock);
+      console.log(data);
+      if (data.results == []) {
+        const movies = data.results;
+        const movieBlock = createMovieDatabase(movies);
+        searchMovie.appendChild(movieBlock);
+      } else {
+        const msg = document.createElement("h2");
+        msg.innerHTML = "no movies match your search";
+
+        searchMovie.appendChild(msg);
+      }
     })
     .catch(error => {
       console.log("Error: ", error);
     });
   inputValue.value = "";
+  searchMovie.innerHTML = "";
+  event.preventDefault();
 };
 
 // image onclick event
@@ -137,6 +166,23 @@ document.onclick = event => {
       .then(res => res.json())
       .then(data => {
         const movieDetails = createSpecificData(data);
+
+        // fetch movie main actor
+        const crew = `movie/${movieID}/credits`;
+        const crewUrl = generateUrl(crew);
+        fetch(crewUrl)
+          .then(res => res.json())
+          .then(data => {
+            const actorOne = mainActor(data.cast[0]);
+            const actorTwo = mainActor(data.cast[1]);
+            const actorThree = mainActor(data.cast[2]);
+            movieDetails.appendChild(actorOne);
+            movieDetails.appendChild(actorTwo);
+            movieDetails.appendChild(actorThree);
+          })
+          .catch(error => {
+            console.log("Error: ", error);
+          });
         modalDisplay.appendChild(movieDetails);
       })
       .catch(error => {
@@ -144,10 +190,10 @@ document.onclick = event => {
       });
 
     // fetch movie videos
-    const path3 = `movie/${movieID}/videos`;
-    const url3 = generateUrl(path3);
+    const path2 = `movie/${movieID}/videos`;
+    const url2 = generateUrl(path2);
     setTimeout(
-      fetch(url3)
+      fetch(url2)
         .then(res => res.json())
         .then(data => {
           const movieTrailer = data.results[0].key;

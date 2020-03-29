@@ -13,6 +13,7 @@
     <title>Movie app</title>
   </head>
   <body>
+    <!-- container for header information -->
     <div class="container">
       <div class="welcome-text">
         <div class="pulse">
@@ -43,16 +44,76 @@
         </div>
       </div>
 
+      <!-- buttons for display latest, popular, top rated and upcoming movies -->
+      <div class="movies-list">
+        <h1>recommended</h1>
+        <button class="now-playing">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Now Playing
+        </button>
+
+        <button class="popular">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Popular
+        </button>
+
+        <button class="topRated">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Top Rated
+        </button>
+
+        <button class="upcoming">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Upcoming
+        </button>
+      </div>
+      <!-- end of buttons list -->
+
+      <!-- form for search movies -->
       <div class="form-group">
+        <h1>... or find a favourite movie yourself</h1>
         <input type="text" id="input-value" />
         <button type="submit" id="search-btn">Search a movie</button>
+        <button id="back-btn">back to home page</button>
       </div>
+      <!-- end of form -->
     </div>
+    <!-- end of container -->
 
+    <!-- container for now playing, popular, top rated and upcoming movies -->
+    <div id="container-movies"></div>
+
+    <!-- now playing movies container -->
+    <div id="playing-movies"></div>
+
+    <!-- popular movies container -->
+    <div id="popular-movies"></div>
+
+    <!-- rated movies container -->
+    <div id="rated-movies"></div>
+
+    <!-- upcoming movies container -->
+    <div id="upcoming-movies"></div>
+
+    <!-- display movies with searched values -->
     <div id="search-movie"></div>
 
+    <!-- display details for required movie -->
     <div class="modal"></div>
 
+    <script src="./files/js/apiTransaction.js"></script>
     <script src="./files/js/app.js"></script>
   </body>
 </html>

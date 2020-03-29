@@ -1,22 +1,19 @@
-// values
-const API_KEY = "5f1515407b5d31af2563839415a04874";
-const url =
-  "https://api.themoviedb.org/3/search/movie?api_key=5f1515407b5d31af2563839415a04874";
-const imgURL = "https://image.tmdb.org/t/p/w500";
-
 // select elements from DOM
 const searchButton = document.querySelector("#search-btn");
 const inputValue = document.querySelector("#input-value");
 const searchMovie = document.querySelector("#search-movie");
+const containerMovies = document.querySelector("#container-movies");
+
+const moviesBtns = document.querySelector(".movies-list");
+const backButton = document.querySelector("#back-btn");
+
+const nowPlayingButton = document.querySelector(".now-playing");
+const popularButton = document.querySelector(".popular");
+const topRatedButton = document.querySelector(".topRated");
+const upcomingButton = document.querySelector(".upcoming");
 
 // display and close modal with details
 const modalDisplay = document.querySelector(".modal");
-
-// generate url
-function generateUrl(path) {
-  const url = `https://api.themoviedb.org/3/${path}?api_key=5f1515407b5d31af2563839415a04874`;
-  return url;
-}
 
 // create movie section
 function movieSection(movies) {
@@ -35,15 +32,41 @@ function movieSection(movies) {
 }
 
 // function for creating movie database
-function createMovieDatabase(movies) {
+function createMovieDatabase(movies, title = "") {
   const movieElement = document.createElement("div");
   movieElement.setAttribute("class", "movie");
 
+  const titleMovies = document.createElement("h2");
+  titleMovies.innerHTML = title;
+
   const section = movieSection(movies);
 
+  movieElement.appendChild(titleMovies);
   movieElement.appendChild(section);
 
   return movieElement;
+}
+
+// create render function for resolve promise
+function renderSearchMovies(data) {
+  if (data.total_results != 0) {
+    const movies = data.results;
+    const movieBlock = createMovieDatabase(movies);
+    searchMovie.appendChild(movieBlock);
+  } else {
+    const msg = document.createElement("h2");
+    msg.innerHTML = "no movies match your search";
+
+    searchMovie.appendChild(msg);
+  }
+}
+
+// render container for now playing, popular, top rated and upcoming movies
+function renderMovies(data) {
+  const movies = data.results;
+  const movieBlock = createMovieDatabase(movies, this.title);
+
+  containerMovies.appendChild(movieBlock);
 }
 
 // create video trailer from youtube
@@ -70,7 +93,9 @@ function mainActor(movie) {
   actorDetails.setAttribute("class", "actor-details");
   actorDetails.innerHTML = `${movie.name} as ${movie.character}`;
 
-  mainActor.appendChild(img);
+  if (movie.profile_path) {
+    mainActor.appendChild(img);
+  }
   mainActor.appendChild(actorDetails);
 
   return mainActor;
@@ -93,13 +118,16 @@ function createDetails(movie) {
   // display tagline
   const tagline = document.createElement("h4");
   tagline.innerHTML = `"${movie.tagline}"`;
+
   // display overview
   const overviewDisp = document.createElement("p");
   overviewDisp.classList = "title";
   overviewDisp.innerHTML = movie.overview;
 
   detailsDisplay.appendChild(titleDisp);
-  detailsDisplay.appendChild(tagline);
+  if (movie.tagline) {
+    detailsDisplay.appendChild(tagline);
+  }
   detailsDisplay.appendChild(genreDisplay);
   detailsDisplay.appendChild(overviewDisp);
 
@@ -135,29 +163,15 @@ function createSpecificData(movie) {
 
 // search button onclick event
 searchButton.onclick = function(event) {
+  // fetch searched movie
   const value = inputValue.value;
+  searchedMovie(value);
 
-  const newURL = url + "&query=" + value;
-
-  fetch(newURL)
-    .then(res => res.json())
-    .then(data => {
-      if (data.total_results != 0) {
-        const movies = data.results;
-        const movieBlock = createMovieDatabase(movies);
-        searchMovie.appendChild(movieBlock);
-      } else {
-        const msg = document.createElement("h2");
-        msg.innerHTML = "no movies match your search";
-
-        searchMovie.appendChild(msg);
-      }
-    })
-    .catch(error => {
-      console.log("Error: ", error);
-    });
   inputValue.value = "";
   searchMovie.innerHTML = "";
+  moviesBtns.style.display = "none";
+  backButton.style.display = "block";
+  containerMovies.style.display = "none";
   event.preventDefault();
 };
 
@@ -170,7 +184,7 @@ document.onclick = event => {
     const movieID = target.dataset.movieId;
 
     // fetch movie details
-    const path1 = `movie/${movieID}`;
+    const path1 = `/movie/${movieID}`;
     const url1 = generateUrl(path1);
     fetch(url1)
       .then(res => res.json())
@@ -178,7 +192,7 @@ document.onclick = event => {
         const movieDetails = createSpecificData(data);
 
         // fetch movie main actor
-        const crew = `movie/${movieID}/credits`;
+        const crew = `/movie/${movieID}/credits`;
         const crewUrl = generateUrl(crew);
         fetch(crewUrl)
           .then(res => res.json())
@@ -195,7 +209,7 @@ document.onclick = event => {
           });
 
         // fetch movie videos
-        const path2 = `movie/${movieID}/videos`;
+        const path2 = `/movie/${movieID}/videos`;
         const url2 = generateUrl(path2);
         fetch(url2)
           .then(res => res.json())
@@ -214,4 +228,23 @@ document.onclick = event => {
         console.log("Error: ", error);
       });
   }
+};
+
+// onclick event to back on home page
+backButton.onclick = function() {
+  searchMovie.innerHTML = "";
+  moviesBtns.style.display = "block";
+  backButton.style.display = "none";
+  containerMovies.style.display = "block";
+};
+
+nowPlayingMovies();
+popularButton.onclick = function() {
+  return popularMovies();
+};
+topRatedButton.onclick = function() {
+  return topRatedMovies();
+};
+upcomingButton.onclick = function() {
+  return upcomingMovies();
 };

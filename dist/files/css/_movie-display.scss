@@ -1,13 +1,17 @@
-// searched movies style
+// movies display style
 
-@mixin searched {
-  margin-top: 20px;
+@mixin display-movies {
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
   .movie {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    h2 {
+      width: 100%;
+    }
     .section {
       display: flex;
       width: 100%;
@@ -28,7 +32,7 @@
         overflow: hidden;
         width: 90%;
         img {
-          width: 50%;
+          width: 49%;
         }
       }
     }

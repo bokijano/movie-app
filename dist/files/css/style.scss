@@ -13,10 +13,16 @@
   @include container;
 }
 
-// movie container display
+// searched movies container display
 #search-movie {
-  @include searched;
+  @include display-movies;
 }
+
+// now playing, popular, top rated and upcoming movies container
+#container-movies {
+  @include display-movies;
+}
+
 
 // modal with more info display
 .modal {

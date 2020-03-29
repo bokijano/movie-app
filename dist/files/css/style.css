@@ -266,12 +266,242 @@
   }
 }
 
+.container .movies-list {
+  position: relative;
+  width: 90%;
+  margin: 200px auto -100px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .movies-list h1 {
+  position: absolute;
+  top: -75px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 0 10px 0;
+  color: grey;
+  text-align: center;
+  font-family: "Concert One", cursive;
+  text-transform: capitalize;
+  -webkit-animation: animateHeading 3s ease-in infinite;
+          animation: animateHeading 3s ease-in infinite;
+}
+
+@-webkit-keyframes animateHeading {
+  0% {
+    color: grey;
+    font-size: 1.8rem;
+  }
+  50% {
+    color: #333;
+    font-size: 2.2rem;
+  }
+  100% {
+    color: grey;
+    font-size: 1.8rem;
+  }
+}
+
+@keyframes animateHeading {
+  0% {
+    color: grey;
+    font-size: 1.8rem;
+  }
+  50% {
+    color: #333;
+    font-size: 2.2rem;
+  }
+  100% {
+    color: grey;
+    font-size: 1.8rem;
+  }
+}
+
+.container .movies-list button {
+  width: 20%;
+  cursor: pointer;
+  position: relative;
+  padding: 15px 20px;
+  margin: 10px 10px;
+  border: none;
+  background: transparent;
+  color: #333;
+  font-family: "Luckiest Guy", cursive;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  letter-spacing: 4px;
+}
+
+.container .movies-list button span {
+  position: absolute;
+  display: block;
+}
+
+.container .movies-list button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), to(dodgerblue));
+  background: linear-gradient(90deg, transparent, dodgerblue);
+  -webkit-animation: animate3 1s linear infinite;
+          animation: animate3 1s linear infinite;
+}
+
+@-webkit-keyframes animate3 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes animate3 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+.container .movies-list button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), to(dodgerblue));
+  background: linear-gradient(90deg, transparent, dodgerblue);
+  -webkit-animation: animate4 1s linear infinite;
+          animation: animate4 1s linear infinite;
+  -webkit-animation-delay: 0.25s;
+          animation-delay: 0.25s;
+}
+
+@-webkit-keyframes animate4 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes animate4 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+.container .movies-list button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), to(dodgerblue));
+  background: linear-gradient(90deg, transparent, dodgerblue);
+  -webkit-animation: animate5 1s linear infinite;
+          animation: animate5 1s linear infinite;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes animate5 {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes animate5 {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+.container .movies-list button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), to(dodgerblue));
+  background: linear-gradient(90deg, transparent, dodgerblue);
+  -webkit-animation: animate6 1s linear infinite;
+          animation: animate6 1s linear infinite;
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+
+@-webkit-keyframes animate6 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+@keyframes animate6 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+.container .movies-list button:hover {
+  color: dodgerblue;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 768px) {
+  .container .movies-list {
+    width: 100%;
+  }
+  .container .movies-list button {
+    width: 40%;
+    padding: 15px 10px;
+    font-size: 1rem;
+  }
+}
+
 .container .form-group {
   width: 90%;
   margin-top: 130px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center;
@@ -282,6 +512,40 @@
 @media screen and (min-width: 768px) {
   .container .form-group {
     width: 60%;
+  }
+}
+
+.container .form-group #back-btn {
+  display: none;
+  width: 80%;
+  background-color: yellow;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  color: #333;
+  padding: 10px 0px;
+  text-transform: capitalize;
+  cursor: pointer;
+  margin-top: 5px;
+  font-family: "Lemonada", cursive;
+}
+
+.container .form-group #back-btn:hover {
+  font-weight: bolder;
+  padding: 12px 2px;
+}
+
+.container .form-group h1 {
+  width: 100%;
+  text-align: center;
+  font-family: "Lemonada", cursive;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .container .form-group h1 {
+    font-size: 1rem;
   }
 }
 
@@ -320,21 +584,30 @@
 }
 
 #search-movie {
-  margin-top: 20px;
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
 }
 
 #search-movie .movie {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#search-movie .movie h2 {
+  width: 100%;
 }
 
 #search-movie .movie .section {
@@ -368,11 +641,79 @@
     width: 90%;
   }
   #search-movie .movie .section img {
-    width: 50%;
+    width: 49%;
   }
 }
 
 #search-movie h2 {
+  text-transform: capitalize;
+  text-align: center;
+  font-family: "Luckiest Guy", cursive;
+}
+
+#container-movies {
+  width: 90%;
+  margin: 20px auto 0 auto;
+}
+
+#container-movies .movie {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#container-movies .movie h2 {
+  width: 100%;
+}
+
+#container-movies .movie .section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#container-movies .movie .section img {
+  padding: 20px;
+  width: 20%;
+  -webkit-transition: 0.25s all;
+  transition: 0.25s all;
+}
+
+#container-movies .movie .section img:hover {
+  margin-left: 0 40px;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  #container-movies .movie .section {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    overflow: hidden;
+    width: 90%;
+  }
+  #container-movies .movie .section img {
+    width: 49%;
+  }
+}
+
+#container-movies h2 {
   text-transform: capitalize;
   text-align: center;
   font-family: "Luckiest Guy", cursive;
@@ -494,6 +835,8 @@
   text-align: center;
   font-size: 0.75rem;
   font-family: "Luckiest Guy", cursive;
+  margin: 5px 0px;
+  height: 50px;
 }
 
 .modal .content .video-style {
@@ -517,9 +860,6 @@
   }
   .modal .content .details {
     width: 100%;
-  }
-  .modal .content .actor-style h2 {
-    height: 50px;
   }
   .modal .content .video-style {
     width: 100%;

@@ -1,5 +1,7 @@
 // header page style
 
+@import "./more-movies";
+
 @mixin container {
   display: flex;
   flex-direction: column;
@@ -154,14 +156,49 @@
     }
   }
 
+  // latest, popular top rated and upcoming movies style
+  .movies-list {
+    @include more-movies;
+  }
+
+  //form group style
   .form-group {
     width: 90%;
     margin-top: 130px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     @media screen and (min-width: 768px) {
       width: 60%;
+    }
+    #back-btn {
+      display: none;
+      width: 80%;
+      background-color: yellow;
+      outline: none;
+      border: none;
+      border-radius: 20px;
+      color: #333;
+      padding: 10px 0px;
+      text-transform: capitalize;
+      cursor: pointer;
+      margin-top: 5px;
+      font-family: "Lemonada", cursive;
+      &:hover {
+        font-weight: bolder;
+        padding: 12px 2px;
+      }
+    }
+    h1 {
+      width: 100%;
+      text-align: center;
+      font-family: "Lemonada", cursive;
+      text-transform: capitalize;
+      font-size: 1.5rem;
+      @media screen and (max-width: 768px) {
+        font-size: 1rem;
+      }
     }
     #input-value {
       width: 60%;

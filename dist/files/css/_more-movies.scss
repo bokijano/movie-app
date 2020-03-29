@@ -1,0 +1,140 @@
+// latest, popular top rated and upcoming movies style
+
+@mixin more-movies {
+  position: relative;
+  width: 90%;
+  margin: 200px auto -100px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  h1 {
+    position: absolute;
+    top: -75px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 0 10px 0;
+    color: grey;
+    text-align: center;
+    font-family: "Concert One", cursive;
+    text-transform: capitalize;
+    animation: animateHeading 3s ease-in infinite;
+    @keyframes animateHeading {
+      0% {
+        color: grey;
+        font-size: 1.8rem;
+      }
+      50% {
+        color: #333;
+        font-size: 2.2rem;
+      }
+      100% {
+        color: grey;
+        font-size: 1.8rem;
+      }
+    }
+  }
+  button {
+    width: 20%;
+    cursor: pointer;
+    position: relative;
+    padding: 15px 20px;
+    margin: 10px 10px;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-family: "Luckiest Guy", cursive;
+    font-size: 1.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    span {
+      position: absolute;
+      display: block;
+      &:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, dodgerblue);
+        animation: animate3 1s linear infinite;
+      }
+      @keyframes animate3 {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
+      &:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, dodgerblue);
+        animation: animate4 1s linear infinite;
+        animation-delay: 0.25s;
+      }
+      @keyframes animate4 {
+        0% {
+          top: -100%;
+        }
+        50%,
+        100% {
+          top: 100%;
+        }
+      }
+      &:nth-child(3) {
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, dodgerblue);
+        animation: animate5 1s linear infinite;
+        animation-delay: 0.5s;
+      }
+      @keyframes animate5 {
+        0% {
+          right: -100%;
+        }
+        50%,
+        100% {
+          right: 100%;
+        }
+      }
+      &:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, dodgerblue);
+        animation: animate6 1s linear infinite;
+        animation-delay: 0.75s;
+      }
+      @keyframes animate6 {
+        0% {
+          bottom: -100%;
+        }
+        50%,
+        100% {
+          bottom: 100%;
+        }
+      }
+    }
+    &:hover {
+      color: dodgerblue;
+      font-weight: bolder;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    button {
+      width: 40%;
+      padding: 15px 10px;
+      font-size: 1rem;
+    }
+  }
+}

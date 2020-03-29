@@ -23,19 +23,19 @@
     animation: pulseColor 20s linear infinite;
     @keyframes pulseColor {
       0% {
-        background-color: grey;
+        background-color: lightblue;
       }
       25% {
         background-color: #03a9f4;
       }
       50% {
-        background-color: lightgrey;
+        background-color: lightblue;
       }
       75% {
         background-color: dodgerblue;
       }
       100% {
-        background-color: grey;
+        background-color: lightblue;
       }
     }
     .pulse {

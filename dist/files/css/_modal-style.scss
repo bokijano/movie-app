@@ -4,7 +4,7 @@
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding: 50px 0;
   left: 0;
   top: 0;
   width: 100%;
@@ -49,6 +49,19 @@
       padding: 20px;
       h1 {
         font-family: "Luckiest Guy", cursive;
+        text-align: center;
+      }
+      h3 {
+        font-family: "Lemonada", cursive;
+        padding: 10px;
+        color: grey;
+      }
+      h4 {
+        font-family: "Caveat Brush", cursive;
+        font-style: italic;
+        font-size: 1.2rem;
+        padding-bottom: 5px;
+        text-align: center;
       }
       p {
         text-align: justify;
@@ -72,7 +85,15 @@
         font-family: "Luckiest Guy", cursive;
       }
     }
+    .video-style {
+      width: 80%;
+      height: 350px;
+      margin-left: 10%;
+      margin-right: 10%;
+      margin-bottom: 20px;
+    }
     @media screen and (max-width: 768px) {
+      width: 90%;
       flex-wrap: wrap;
       padding: 2px;
       img {
@@ -82,13 +103,16 @@
       .details {
         width: 100%;
       }
+      .actor-style {
+        h2 {
+          height: 50px;
+        }
+      }
+      .video-style {
+        width: 100%;
+        margin: 0;
+        order: 3;
+      }
     }
-  }
-  .video-style {
-    width: 80%;
-    height: 350px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 20px;
   }
 }

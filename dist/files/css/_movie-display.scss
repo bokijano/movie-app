@@ -2,6 +2,8 @@
 
 @mixin searched {
   margin-top: 20px;
+  width: 90%;
+  margin: 0 auto;
   .movie {
     display: flex;
     justify-content: center;

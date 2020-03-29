@@ -51,37 +51,37 @@
 
 @-webkit-keyframes pulseColor {
   0% {
-    background-color: grey;
+    background-color: lightblue;
   }
   25% {
     background-color: #03a9f4;
   }
   50% {
-    background-color: lightgrey;
+    background-color: lightblue;
   }
   75% {
     background-color: dodgerblue;
   }
   100% {
-    background-color: grey;
+    background-color: lightblue;
   }
 }
 
 @keyframes pulseColor {
   0% {
-    background-color: grey;
+    background-color: lightblue;
   }
   25% {
     background-color: #03a9f4;
   }
   50% {
-    background-color: lightgrey;
+    background-color: lightblue;
   }
   75% {
     background-color: dodgerblue;
   }
   100% {
-    background-color: grey;
+    background-color: lightblue;
   }
 }
 
@@ -321,6 +321,8 @@
 
 #search-movie {
   margin-top: 20px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 #search-movie .movie {
@@ -380,7 +382,7 @@
   display: none;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
+  padding: 50px 0;
   left: 0;
   top: 0;
   width: 100%;
@@ -443,6 +445,21 @@
 
 .modal .content .details h1 {
   font-family: "Luckiest Guy", cursive;
+  text-align: center;
+}
+
+.modal .content .details h3 {
+  font-family: "Lemonada", cursive;
+  padding: 10px;
+  color: grey;
+}
+
+.modal .content .details h4 {
+  font-family: "Caveat Brush", cursive;
+  font-style: italic;
+  font-size: 1.2rem;
+  padding-bottom: 5px;
+  text-align: center;
 }
 
 .modal .content .details p {
@@ -479,8 +496,17 @@
   font-family: "Luckiest Guy", cursive;
 }
 
+.modal .content .video-style {
+  width: 80%;
+  height: 350px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .modal .content {
+    width: 90%;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     padding: 2px;
@@ -492,13 +518,15 @@
   .modal .content .details {
     width: 100%;
   }
-}
-
-.modal .video-style {
-  width: 80%;
-  height: 350px;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 20px;
+  .modal .content .actor-style h2 {
+    height: 50px;
+  }
+  .modal .content .video-style {
+    width: 100%;
+    margin: 0;
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+  }
 }
 /*# sourceMappingURL=style.css.map */

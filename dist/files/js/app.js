@@ -80,16 +80,27 @@ function mainActor(movie) {
 function createDetails(movie) {
   const detailsDisplay = document.createElement("div");
   detailsDisplay.setAttribute("class", "details");
-
+  //display title
   const titleDisp = document.createElement("h1");
   titleDisp.classList = "title";
-  titleDisp.innerHTML = movie.title;
-
+  titleDisp.innerHTML =
+    movie.title + " (" + movie.release_date.substring(0, 4) + ")";
+  //display genre
+  const genreDisplay = document.createElement("h3");
+  for (let i = 0; i < movie.genres.length; i++) {
+    genreDisplay.innerHTML += movie.genres[i].name + " ";
+  }
+  // display tagline
+  const tagline = document.createElement("h4");
+  tagline.innerHTML = `"${movie.tagline}"`;
+  // display overview
   const overviewDisp = document.createElement("p");
   overviewDisp.classList = "title";
   overviewDisp.innerHTML = movie.overview;
 
   detailsDisplay.appendChild(titleDisp);
+  detailsDisplay.appendChild(tagline);
+  detailsDisplay.appendChild(genreDisplay);
   detailsDisplay.appendChild(overviewDisp);
 
   return detailsDisplay;
@@ -131,8 +142,7 @@ searchButton.onclick = function(event) {
   fetch(newURL)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
-      if (data.results == []) {
+      if (data.total_results != 0) {
         const movies = data.results;
         const movieBlock = createMovieDatabase(movies);
         searchMovie.appendChild(movieBlock);
@@ -183,28 +193,25 @@ document.onclick = event => {
           .catch(error => {
             console.log("Error: ", error);
           });
+
+        // fetch movie videos
+        const path2 = `movie/${movieID}/videos`;
+        const url2 = generateUrl(path2);
+        fetch(url2)
+          .then(res => res.json())
+          .then(data => {
+            const movieTrailer = data.results[0].key;
+            const videoDisplay = createTrailer(movieTrailer);
+
+            movieDetails.appendChild(videoDisplay);
+          })
+          .catch(error => {
+            console.log("Error: ", error);
+          });
         modalDisplay.appendChild(movieDetails);
       })
       .catch(error => {
         console.log("Error: ", error);
       });
-
-    // fetch movie videos
-    const path2 = `movie/${movieID}/videos`;
-    const url2 = generateUrl(path2);
-    setTimeout(
-      fetch(url2)
-        .then(res => res.json())
-        .then(data => {
-          const movieTrailer = data.results[0].key;
-          const videoDisplay = createTrailer(movieTrailer);
-
-          modalDisplay.appendChild(videoDisplay);
-        })
-        .catch(error => {
-          console.log("Error: ", error);
-        }),
-      1000
-    );
   }
 };

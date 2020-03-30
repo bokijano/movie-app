@@ -1,6 +1,7 @@
 // header page style
 
 @import "./more-movies";
+@import "./welcome-text";
 
 @mixin container {
   display: flex;
@@ -8,20 +9,23 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  .welcome-text {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
-    height: 120px;
-    padding-bottom: 10px;
-    top: 0;
-    border-bottom-left-radius: 20px;
+  #back-btn {
+    display: block;
+    visibility: hidden;
+    width: 50%;
+    background-color: dodgerblue;
+    outline: none;
+    border: 1px solid whitesmoke;
     border-bottom-right-radius: 20px;
-    background-color: lightgrey;
+    border-top-right-radius: 20px;
+    color: #333;
+    padding: 5px 0px;
+    text-transform: capitalize;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: 80px;
+    margin-left: -50%;
+    font-family: "Lemonada", cursive;
     animation: pulseColor 20s linear infinite;
     @keyframes pulseColor {
       0% {
@@ -40,123 +44,63 @@
         background-color: lightblue;
       }
     }
-    .pulse {
-      width: 100%;
-      height: 100%;
-      span {
+    &:hover {
+      font-weight: bolder;
+      padding: 12px 2px;
+      color: whitesmoke;
+    }
+    @media screen and (max-width: 768px) {
+      width: 70%;
+      margin-left: -30%;
+    }
+  }
+  .top-five {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    .top-popular,
+    .top-rated {
+      position: relative;
+      width: 40%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      h2 {
         position: absolute;
-        width: 80px;
-        height: 80px;
-        background: #fff;
+        top: -40px;
+        width: 100%;
+        text-align: center;
+        text-transform: capitalize;
+        font-family: "Acme", sans-serif;
+        font-weight: bolder;
+        animation: animateHeading 5s ease-in infinite;
       }
-      span:nth-child(3n + 1) {
-        background: transparent;
-        border: 5px solid #fff;
-      }
-      span:nth-child(1) {
-        top: 50%;
-        left: 20%;
-        animation: anim-pulse 10s linear infinite;
-      }
-      span:nth-child(2) {
-        top: 80%;
-        left: 40%;
-        animation: anim-pulse 12s linear infinite;
-      }
-      span:nth-child(3) {
-        top: 10%;
-        left: 65%;
-        animation: anim-pulse 15s linear infinite;
-      }
-      span:nth-child(4) {
-        top: 50%;
-        left: 70%;
-        animation: anim-pulse 6s linear infinite;
-      }
-      span:nth-child(5) {
-        top: 10%;
-        left: 30%;
-        animation: anim-pulse 9s linear infinite;
-      }
-      span:nth-child(6) {
-        top: 90%;
-        left: 95%;
-        animation: anim-pulse 14s linear infinite;
-      }
-      span:nth-child(7) {
-        top: 80%;
-        left: 5%;
-        animation: anim-pulse 8s linear infinite;
-      }
-      span:nth-child(8) {
-        top: 35%;
-        left: 50%;
-        animation: anim-pulse 11s linear infinite;
-      }
-      span:nth-child(9) {
-        top: 5%;
-        left: 5%;
-        animation: anim-pulse 2s linear infinite;
-      }
-      span:nth-child(10) {
-        top: 25%;
-        left: 90%;
-        animation: anim-pulse 11s linear infinite;
-      }
-      @keyframes anim-pulse {
-        0% {
-          transform: scale(0) translateY(0) rotate(0deg);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1) translateY(-100px) rotate(360deg);
-          opacity: 0;
+      img {
+        margin: 5px;
+        width: 15%;
+        cursor: pointer;
+        transition: 0.5s;
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 4px 4px 4px grey;
         }
       }
-    }
-    h2 {
-      font-family: "Sigmar One", cursive;
-      text-align: center;
-      text-transform: uppercase;
-      font-size: 1.6rem;
-      animation: animate1 2s ease forwards;
-    }
-    @keyframes animate1 {
-      from {
-        opacity: 0.1;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    .animate-text {
-      h1 {
-        position: relative;
-        overflow: hidden;
-        font-size: 1.5rem;
-        font-family: "Luckiest Guy", cursive;
-        right: -100%;
-        animation: animate2 2s linear forwards;
-        &:nth-child(8) {
-          animation-delay: 4s;
-        }
-      }
-      @keyframes animate2 {
-        0% {
-          opacity: 0.1;
-          right: -100%;
-          font-size: 1.5rem;
-        }
-        100% {
-          right: 0%;
-          opacity: 1;
-          font-size: 3rem;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        &:first-child {
+          margin-bottom: 50px;
         }
       }
     }
   }
+  .welcome-text {
+    @include welcome;
+  }
 
-  // latest, popular top rated and upcoming movies style
+  // latest, popular top rated and upcoming movies button style
   .movies-list {
     @include more-movies;
   }
@@ -172,24 +116,6 @@
     @media screen and (min-width: 768px) {
       width: 60%;
     }
-    #back-btn {
-      display: none;
-      width: 80%;
-      background-color: yellow;
-      outline: none;
-      border: none;
-      border-radius: 20px;
-      color: #333;
-      padding: 10px 0px;
-      text-transform: capitalize;
-      cursor: pointer;
-      margin-top: 5px;
-      font-family: "Lemonada", cursive;
-      &:hover {
-        font-weight: bolder;
-        padding: 12px 2px;
-      }
-    }
     h1 {
       width: 100%;
       text-align: center;
@@ -199,6 +125,9 @@
       @media screen and (max-width: 768px) {
         font-size: 1rem;
       }
+    }
+    #second-msg {
+      display: none;
     }
     #input-value {
       width: 60%;

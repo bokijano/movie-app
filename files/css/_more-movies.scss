@@ -3,7 +3,7 @@
 @mixin more-movies {
   position: relative;
   width: 90%;
-  margin: 200px auto -100px auto;
+  margin: 100px auto -100px auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -47,6 +47,7 @@
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
+    outline: none;
     transition: 0.5s;
     letter-spacing: 4px;
     span {

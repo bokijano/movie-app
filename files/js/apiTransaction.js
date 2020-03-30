@@ -3,6 +3,9 @@
 //const ratedMovies = document.querySelector("rated-movies");
 //const upcomingMovies = document.querySelector//("#upcoming-movies");
 
+const topPopular = document.querySelector(".top-popular");
+const topRated = document.querySelector(".top-rated");
+
 // API values
 const API_KEY = "5f1515407b5d31af2563839415a04874";
 const url =
@@ -28,6 +31,19 @@ function handleError(error) {
   console.log("Error: ", error);
 }
 
+// create movie section for top 5 movies
+function topFiveSection(movies, domTitle) {
+  movies.map(movie => {
+    if (movie.poster_path) {
+      const img = document.createElement("img");
+      img.src = imgURL + movie.poster_path;
+      img.setAttribute("data-movie-id", movie.id);
+
+      domTitle.appendChild(img);
+    }
+  });
+}
+
 // create function for searching movies
 function searchedMovie(value) {
   const path = "/search/movie";
@@ -36,7 +52,7 @@ function searchedMovie(value) {
   requestMovie(url, renderSearchMovies, handleError);
 }
 
-// function for displaying and rendering latest movies
+// function for displaying and rendering now playing movies
 function nowPlayingMovies() {
   const path = "/movie/now_playing";
   const url = generateUrl(path);
@@ -53,6 +69,32 @@ function popularMovies() {
   const render = renderMovies.bind({ title: "Popular Movies" });
   requestMovie(url, render, handleError);
 }
+// display top five popular movies
+function popularFiveMovies() {
+  const path = "/movie/popular";
+  const url = generateUrl(path);
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const title = document.createElement("h2");
+      title.innerHTML = "The 5 most popular movies";
+      topPopular.appendChild(title);
+      const movies = data.results.slice(0, 5);
+      movies.map(movie => {
+        if (movie.poster_path) {
+          const img = document.createElement("img");
+          img.src = imgURL + movie.poster_path;
+          img.setAttribute("data-movie-id", movie.id);
+
+          topPopular.appendChild(img);
+        }
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
 
 // function for displaying top rated movies
 function topRatedMovies() {
@@ -61,6 +103,32 @@ function topRatedMovies() {
 
   const render = renderMovies.bind({ title: "Top Rated Movies" });
   requestMovie(url, render, handleError);
+}
+// display top five top rated movies
+function topRatedFiveMovies() {
+  const path = "/movie/top_rated";
+  const url = generateUrl(path);
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const title = document.createElement("h2");
+      title.innerHTML = "best rated 5 movies";
+      topRated.appendChild(title);
+      const movies = data.results.slice(0, 5);
+      movies.map(movie => {
+        if (movie.poster_path) {
+          const img = document.createElement("img");
+          img.src = imgURL + movie.poster_path;
+          img.setAttribute("data-movie-id", movie.id);
+
+          topRated.appendChild(img);
+        }
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 // function for displaying upcoming movies

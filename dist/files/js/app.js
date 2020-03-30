@@ -28,6 +28,7 @@ function movieSection(movies) {
       section.appendChild(img);
     }
   });
+
   return section;
 }
 
@@ -170,8 +171,13 @@ searchButton.onclick = function(event) {
   inputValue.value = "";
   searchMovie.innerHTML = "";
   moviesBtns.style.display = "none";
-  backButton.style.display = "block";
+  backButton.style.visibility = "visible";
+  backButton.style.marginTop = "120px";
+  document.querySelector(".form-group").style.marginTop = "10px";
   containerMovies.style.display = "none";
+  document.querySelector("#first-msg").style.display = "none";
+  document.querySelector("#second-msg").style.display = "block";
+  document.querySelector(".top-five").style.display = " none";
   event.preventDefault();
 };
 
@@ -234,17 +240,50 @@ document.onclick = event => {
 backButton.onclick = function() {
   searchMovie.innerHTML = "";
   moviesBtns.style.display = "block";
-  backButton.style.display = "none";
   containerMovies.style.display = "block";
+  document.querySelector("#first-msg").style.display = "block";
+  document.querySelector("#second-msg").style.display = "none";
+  turnBackDisplayStyle();
 };
 
-nowPlayingMovies();
+// change and turn back style properties when open certain content
+function changeDisplayStyle() {
+  containerMovies.innerHTML = "";
+  document.querySelector(".top-five").style.display = " none";
+  document.querySelector(".movies-list").style.marginTop = "50px";
+  document.querySelector(".form-group").style.display = " none";
+  containerMovies.style.marginTop = "100px";
+  backButton.style.visibility = "visible";
+  backButton.style.marginTop = "120px";
+}
+function turnBackDisplayStyle() {
+  containerMovies.innerHTML = "";
+  document.querySelector(".top-five").style.display = " flex";
+  document.querySelector(".movies-list").style.marginTop = "100px";
+  document.querySelector(".movies-list").style.display = "flex";
+  document.querySelector(".form-group").style.display = " flex";
+  document.querySelector(".form-group").style.marginTop = "130px";
+  containerMovies.style.marginTop = "20px";
+  backButton.style.marginTop = "80px";
+  backButton.style.visibility = "hidden";
+}
+
+nowPlayingButton.onclick = function() {
+  changeDisplayStyle();
+  nowPlayingMovies();
+};
 popularButton.onclick = function() {
-  return popularMovies();
+  changeDisplayStyle();
+  popularMovies();
 };
 topRatedButton.onclick = function() {
-  return topRatedMovies();
+  changeDisplayStyle();
+  topRatedMovies();
 };
 upcomingButton.onclick = function() {
-  return upcomingMovies();
+  changeDisplayStyle();
+  upcomingMovies();
 };
+
+popularFiveMovies();
+topRatedFiveMovies();

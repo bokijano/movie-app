@@ -78,7 +78,7 @@ function popularFiveMovies() {
     .then(res => res.json())
     .then(data => {
       const title = document.createElement("h2");
-      title.innerHTML = "The 5 most popular movies";
+      title.innerHTML = "5 most popular movies";
       topPopular.appendChild(title);
       const movies = data.results.slice(0, 5);
       movies.map(movie => {

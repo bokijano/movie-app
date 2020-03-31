@@ -243,20 +243,6 @@ backButton.onclick = function() {
   containerMovies.style.display = "block";
   document.querySelector("#first-msg").style.display = "block";
   document.querySelector("#second-msg").style.display = "none";
-  turnBackDisplayStyle();
-};
-
-// change and turn back style properties when open certain content
-function changeDisplayStyle() {
-  containerMovies.innerHTML = "";
-  document.querySelector(".top-five").style.display = " none";
-  document.querySelector(".movies-list").style.marginTop = "50px";
-  document.querySelector(".form-group").style.display = " none";
-  containerMovies.style.marginTop = "100px";
-  backButton.style.visibility = "visible";
-  backButton.style.marginTop = "120px";
-}
-function turnBackDisplayStyle() {
   containerMovies.innerHTML = "";
   document.querySelector(".top-five").style.display = " flex";
   document.querySelector(".movies-list").style.marginTop = "100px";
@@ -266,6 +252,17 @@ function turnBackDisplayStyle() {
   containerMovies.style.marginTop = "20px";
   backButton.style.marginTop = "80px";
   backButton.style.visibility = "hidden";
+};
+
+// change style properties when open certain content
+function changeDisplayStyle() {
+  containerMovies.innerHTML = "";
+  document.querySelector(".top-five").style.display = " none";
+  document.querySelector(".movies-list").style.marginTop = "50px";
+  document.querySelector(".form-group").style.display = " none";
+  containerMovies.style.marginTop = "120px";
+  backButton.style.visibility = "visible";
+  backButton.style.marginTop = "120px";
 }
 
 nowPlayingButton.onclick = function() {

@@ -75,7 +75,7 @@
         right: 0;
         width: 2px;
         height: 100%;
-        background: linear-gradient(90deg, transparent, dodgerblue);
+        background: linear-gradient(180deg, transparent, dodgerblue);
         animation: animate4 1s linear infinite;
         animation-delay: 0.25s;
       }
@@ -93,7 +93,7 @@
         right: -100%;
         width: 100%;
         height: 2px;
-        background: linear-gradient(90deg, transparent, dodgerblue);
+        background: linear-gradient(270deg, transparent, dodgerblue);
         animation: animate5 1s linear infinite;
         animation-delay: 0.5s;
       }
@@ -111,7 +111,7 @@
         left: 0;
         width: 2px;
         height: 100%;
-        background: linear-gradient(90deg, transparent, dodgerblue);
+        background: linear-gradient(360deg, transparent, dodgerblue);
         animation: animate6 1s linear infinite;
         animation-delay: 0.75s;
       }

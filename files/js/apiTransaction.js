@@ -21,7 +21,7 @@ function generateUrl(path) {
 // function to send request for movies
 function requestMovie(url, onComplete, onError) {
   fetch(url)
-    .then(res => res.json())
+    .then((res) => res.json())
     .then(onComplete)
     .catch(onError);
 }
@@ -29,19 +29,6 @@ function requestMovie(url, onComplete, onError) {
 // function for handling error
 function handleError(error) {
   console.log("Error: ", error);
-}
-
-// create movie section for top 5 movies
-function topFiveSection(movies, domTitle) {
-  movies.map(movie => {
-    if (movie.poster_path) {
-      const img = document.createElement("img");
-      img.src = imgURL + movie.poster_path;
-      img.setAttribute("data-movie-id", movie.id);
-
-      domTitle.appendChild(img);
-    }
-  });
 }
 
 // create function for searching movies
@@ -75,13 +62,13 @@ function popularFiveMovies() {
   const url = generateUrl(path);
 
   fetch(url)
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       const title = document.createElement("h2");
       title.innerHTML = "5 most popular movies";
       topPopular.appendChild(title);
       const movies = data.results.slice(0, 5);
-      movies.map(movie => {
+      movies.map((movie) => {
         if (movie.poster_path) {
           const img = document.createElement("img");
           img.src = imgURL + movie.poster_path;
@@ -91,7 +78,7 @@ function popularFiveMovies() {
         }
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 }
@@ -110,13 +97,13 @@ function topRatedFiveMovies() {
   const url = generateUrl(path);
 
   fetch(url)
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       const title = document.createElement("h2");
       title.innerHTML = "best rated 5 movies";
       topRated.appendChild(title);
       const movies = data.results.slice(0, 5);
-      movies.map(movie => {
+      movies.map((movie) => {
         if (movie.poster_path) {
           const img = document.createElement("img");
           img.src = imgURL + movie.poster_path;
@@ -126,7 +113,7 @@ function topRatedFiveMovies() {
         }
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
     });
 }

@@ -169,7 +169,7 @@
   .container .top-five .top-popular > :nth-child(2),
   .container .top-five .top-rated > :nth-child(2) {
     width: 30%;
-    margin: 0 35%;
+    margin: 10px 35%;
   }
   .container .top-five .top-popular img,
   .container .top-five .top-rated img {
@@ -523,8 +523,8 @@
   right: 0;
   width: 2px;
   height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(transparent), to(dodgerblue));
-  background: linear-gradient(90deg, transparent, dodgerblue);
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(dodgerblue));
+  background: linear-gradient(180deg, transparent, dodgerblue);
   -webkit-animation: animate4 1s linear infinite;
           animation: animate4 1s linear infinite;
   -webkit-animation-delay: 0.25s;
@@ -556,8 +556,8 @@
   right: -100%;
   width: 100%;
   height: 2px;
-  background: -webkit-gradient(linear, left top, right top, from(transparent), to(dodgerblue));
-  background: linear-gradient(90deg, transparent, dodgerblue);
+  background: -webkit-gradient(linear, right top, left top, from(transparent), to(dodgerblue));
+  background: linear-gradient(270deg, transparent, dodgerblue);
   -webkit-animation: animate5 1s linear infinite;
           animation: animate5 1s linear infinite;
   -webkit-animation-delay: 0.5s;
@@ -589,8 +589,8 @@
   left: 0;
   width: 2px;
   height: 100%;
-  background: -webkit-gradient(linear, left top, right top, from(transparent), to(dodgerblue));
-  background: linear-gradient(90deg, transparent, dodgerblue);
+  background: -webkit-gradient(linear, left bottom, left top, from(transparent), to(dodgerblue));
+  background: linear-gradient(360deg, transparent, dodgerblue);
   -webkit-animation: animate6 1s linear infinite;
           animation: animate6 1s linear infinite;
   -webkit-animation-delay: 0.75s;
